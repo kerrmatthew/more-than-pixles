@@ -1,0 +1,392 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+---
+
+<div class="row project-row project-ou-reports">
+
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Dynamic Customisable Reports<br />
+      <sub>for Orange Umbrella</sub>
+    </h1>
+
+    <!-- 
+      explain orange umbrella better. 
+      How is current app structured. 
+      what are the constraints. 
+
+      Put in more stuff about agile 
+     -->
+
+    <p class="summary">
+      Orange Umbrella, a workplace culture consultancy, wanted to increase the use of the custom report builder. Using data from customer support, as well as analysis of use patterns, we developed a set of improvements that would make the tool more approachable for users. 
+    </p>
+  </div>
+
+  <div class="design-phases col-md-8 col-md-offset-2">
+    <div class="">
+      <img src="/images/icons/research.png" width="45px" />
+      <h3>Research</h3>
+    </div>
+    <div class=""><h3>Concept Development</h3></div>
+    <div class=""><h3>Developed Design</h3></div>
+  </div>
+
+  <div class="project-section research col-md-8 col-md-offset-2">
+    <h2>Research</h2>
+    <h3>Methodology</h3>
+    <p>
+      With the goal of the project defined around increacing the use of the reports tool by existing customers, 3 primary sources of research were defined; Existing support documents, interviews with current users, and existing useage data. We decided against scenario testing after consultation with the client, as we agreed that it was unlikely to reveal any insights not available in the existing useage data. 
+    </p>
+    <h3>Current UX</h3>
+    <p>
+      The current UX flow in the reports is common to many CRUD type applications; first a report is created, then edited until it is in the state that the user wants. The process of creating and developing a report can be represented in a flow diagram. 
+    </p>
+    <figure class="col-md-8 col-md-offset-2">
+      <figcaption>Main Report Creation Workflows</figcaption>
+      <img src="/images/projects/existing-reports-flow.png" class="" />
+    </figure>
+    <div class="clearfix"></div>
+    <p>
+      It is possible to define every report while staying within this flow, so there is no functionality missing from the system as is. 
+    </p>
+    <p>
+      There are 3 sets of data that can be used to identify points in this flow which are associated with positive and negative feedback from users. The raw data is confidential, and too verbose to list here, but the data found to be most relevant from user support, interviews, and existing useage patterns is listed in the table below: 
+    </p>
+    <p>
+      <table>
+        <caption>Common user support issues, and the UX Flow step(s) they relate to</caption>
+        <tr>
+          <td>
+            <ul>
+              <li>"I created a new report, but all I see is a place to enter the title"</li>
+              <li>"I could not think of a name, so I entered 'gfhjkds'"–or some other gibberish, placeholder name</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Prompt for report name</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>"I have made a new report, and I do not know how to edit it"</li>
+              <li>"I created a new report, now what?"</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Click Node action button</li>
+              <li>Add Child Node</li>
+              <li>Edit Node Criteria</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>"I have a report, but I want to filter the results"</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Modify Criteria Workflow</li>
+              <li>Add child node</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>"I have a report, but I want to filter the results"</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Modify Criteria Workflow</li>
+              <li>Add child node</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </p>
+    <h4>Usage Pattern Analysis</h4>
+    <p>
+      In addition to user support queries, the format of the existing reports can be grouped into just a few types. Importantly, these are identicle to each other in structure, except from the root node (always an organisation), and in some cases the number of sub nodes. 
+    </p>
+    <p>
+      The analysis of existing reports shows two groups of reports: 
+      <ol>
+        <li>
+          Reports with one data grouping:
+          <ul>
+            <li>Responses for each <strong>round</strong> for a given oranisation</li>
+            <li>Responses for each <strong>phase</strong> for a given organisation</li>
+            <li>Responses for each <strong>Sub-Organisation</strong> for a given oranisation</li>
+            <li>Responses for each <strong>Survey</strong> for a given oranisation</li>
+            <li>Responses for each <strong>Attribute value</strong>, for a given <strong>attribute</strong>, for a given oranisation</li>
+          </ul>
+        </li>
+        <li>
+          Reports with more than one data grouping—these are complex or compound reports like:  
+          <ul>
+            <li>Responses for each <strong>Attribute value</strong> for a given <strong>attribute</strong>, for each <strong>round</strong>, for a given oranisation</li>
+            <li>Responses for each <strong>Attribute value</strong> for a given <strong>attribute</strong>, for each <strong>phase</strong>, for a given oranisation</li>
+            <li>Responses for each <strong>survey</strong>, for each <strong>round</strong>, for a given oranisation</li>
+            <li>Responses for each <strong>survey</strong>, for each <strong>phase</strong>, for a given oranisation</li>
+            <li>Responses for each <strong>sub-organisation</strong>, for each <strong>round</strong>, for a given oranisation</li>
+            <li>Responses for each <strong>sub-organisation</strong>, for each <strong>phase</strong>, for a given oranisation</li>
+          </ul>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      This looks daunting, but when viewed as a tree, it's clear that there really is only a few different types of report, and they can be created programatically: 
+    </p>
+
+    <figure class="col-md-8 col-md-offset-2">
+      <figcaption>Common Reports represented as a Tree – Simple Reports</figcaption>
+      <img src="/images/projects/simple-reports.png" class="" />
+    </figure>
+    <div class="clearfix"></div>
+
+    <p>
+      The complex reports can also be represented as a tree:  
+    </p>
+
+    <figure class="col-md-8 col-md-offset-2">
+      <figcaption>Common Reports represented as a Tree – Complex Reports</figcaption>
+      <img src="/images/projects/complex-reports.png" class="" />
+    </figure>
+    <div class="clearfix"></div>
+
+    <p>
+      Going back to the existing saved reports in the system, we can now group them into 4 catgories: 
+      <ul>
+        <li><strong>Simple</strong>–the report generated fits one of the simple reports</li>
+        <li><strong>Modified Simple</strong>–the report generated fits one of the simple reports, with some changes after generation</li>
+        <li><strong>Complex</strong> –the report generated fits one of the complex reports</li>
+        <li><strong>Modified Complex</strong>–the report generated fits one of the complex reports, with some changes after generation</li>
+      </ul>
+    </p>
+    <figure class="col-md-8 col-md-offset-2">
+      <figcaption>Existing Reports on Current by Category</figcaption>
+      <img src="/images/projects/graph.png" class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+    <p>
+      For 60% of existing reports, the patterns matched above are all the report authors will need. 
+    </p>
+    <p>
+      For the remaining 40%, the differences between their setup, and the nearest template can be cataloged and grouped. The transformations needed to get from a 'common report' to the final report can be cataloged and tallied. 
+    </p>
+    <p>
+      The current operations possible on the node tree are <strong>Delete</strong> and <strong>Add child node</strong>. 
+    </p>
+    <p>
+      The analysis showed that adding 3 operations would make all of the transformations possible within a few steps:
+      <ul>
+        <li>Adding a node above</li>
+        <li>Merging Nodes with the same parent</li>
+        <li>Changing the parent of a node</li>
+      </ul>
+    </p>
+  </div>
+  <div class="project-section concept col-md-8 col-md-offset-2">
+    <h2>Concept Development</h2>
+    <h3>Existing</h3>
+    <img class="col-xs-12" src="/images/projects/existing-report.png" />
+    <p>
+      As this is a plan to improve an existing code base. The architecture of the current build acts as a useful constraint. It consists of 3 parts:
+    </p>
+
+    <figure class="col-sm-12 col-md-12 ">
+      <figcaption>Reports Management</figcaption>
+      <img src="/images/projects/report-management.png" class="" />
+    </figure>
+
+    <figure class="col-sm-12 col-md-8 col-md-offset-2">
+      <figcaption>The Node editor and the Report Body</figcaption>
+      <img src="/images/projects/reports-wireframe.png" class="" />
+    </figure>
+    <div class="clearfix"></div>
+    <h3>Bringing in the developers</h3>
+    <p>
+      At this point I scheduled a meeting with the developers to introduce them to the problems discovered in the research, and to discuss the feasibility of fixes. 
+    </p>
+    <p>
+      The set of changes were broken up into 3 parts, and during a two hour whiteboard session we sketched out some preliminary designs for each. The sections were: 
+    </p>
+    <ul>
+      <li>
+        <figure class="col-sm-6 col-md-4 col-md-offset-0">
+          <img src="/images/projects/template-sketch.jpg" class="img-thumbnail" />
+        </figure>
+        <div class="col-sm-6 col-md-8">
+        <h4><strong>Report Template Sketch</strong></h4>
+          After looking at the research, decided that we could create a template based system for creating new reports. We would create template options dynamically, depending on what kind of surveys the users' organisation had. So an organisation without sub-organisations would never be presented with the option to create a sub-organisation report. 
+        </div>
+        <div class="clearfix"></div>
+      </li>
+      <li>
+        <figure class="col-sm-6 col-md-4 col-md-offset-0">
+          <img src="/images/projects/report-sketch.jpg" class="img-thumbnail" />
+        </figure>
+        <div class="col-sm-6 col-md-8">
+        <h4><strong>Report Body Sketch</strong></h4>
+         The reports themselves function well. 
+         However, there is concern that with increaced useage, the slow loading time of the report body could become a UX issue. To head this off, we decided to redesign the reports in a paginated form. 
+        </div>
+        <div class="clearfix"></div>
+      </li>
+
+
+      <li>
+        <div class="col-sm-6 col-sm-offset-6 col-md-8 col-md-offset-4 ">
+        <h4><strong>Node Editor</strong></h4>
+        <p>
+          The current node editor has significant technical debt, and some refactoring work needed to be done before any changes can be done. 
+          In addition, complex user interactions are difficult to scope–what seems simple can often be very time consuming to implement across browsers. 
+          Instead of agreeing on a drawing, we agreed on a precedence for the operations in order of risk; 
+          Add node below, Add node above, Merge nodes, and finally, Change parent node. 
+        </p>
+
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+
+
+  </div>
+  <div class="project-section developed-design col-md-8 col-md-offset-2">
+    <h2>Developed Design</h2>
+    <h3>Template chooser</h3>
+    <h4>Wireframes</h4>
+    <p>
+      Once that a template based strategy has been decided on, it's time to decide how to present these options to users. 3 different layouts are developed and quickly tested: 
+    </p>
+    <ul>
+      <li>
+        <figure class="cul-xs-6 col-md-4 ">
+          <figcaption>Carousel</figcaption>
+          <img src="/images/projects/carousel.gif" class="" />
+        </figure>
+        <div class="col-xs-6 col-md-8">
+          The Carousel is a simple and effective way to scroll through many options, and there can be as many as 15 or more different template options generated.
+        </div>
+        <div class="clearfix"></div>
+      </li>
+      <li>
+        <figure class="col-xs-6 col-md-4 ">
+          <figcaption>Side Navigation</figcaption>
+          <img src="/images/projects/side-nav.gif" class="" />
+        </figure>
+        <div class="col-xs-6 col-md-8">
+          Side navigation allows for more reports to be visible, and additional reports can be scrolled down to. There is also an additional affordance in the report preview.  
+        </div>
+        <div class="clearfix"></div>
+      </li>
+
+      <li>
+        <figure class="col-xs-6 col-md-4 ">
+          <figcaption>Grid Layout</figcaption>
+          <img src="/images/projects/grid.gif" class="" />
+        </figure>
+        <div class="col-xs-6 col-md-8">
+          The simplest layout, this displays the available templates in a flat hierarchy, using a grid layout. It is the simplest to build, but more importantly, it's the simplest to navigate. Users only need to be aware of one scrolling 'area' and as new templates become available, they are inserted into the grid. We decided to continue with this layout. 
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ol>
+
+    <h4>Visual Design</h4>
+    
+    <figure class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-1">
+      <figcaption>Final Visual Design–Template Chooser</figcaption>
+      <img src="/images/projects/template-chooser.jpg" class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+    <p>
+      At this point a few more affordances are added to complete the page. A link to saved reports, a chooser for the root node for templates for organisations with many sub organisations. We also bring forward the split between Simple and Complex reports that was useful in the research stage. 
+    </p>
+
+    <figure class="col-xs-8 col-md-5 pull-left">
+      <figcaption>Template Icon</figcaption>
+      <img src="/images/projects/template-chooser-hover-states.png" class="img-thumbnail" />
+    </figure>
+    <p>
+      In order to help the users understand what kind of results are in the report, we show a chart of response numbers. This illustrates the number of data series the report will have, and acts as a heuristic for users—they often know the response numbers for each group. It's also a relatively computationally light way to differentiate the graphs.
+    </p>
+    <p>
+       In order to de-clutter the graphs, the series are not labeled. In order to see the series label, you have to hover over. Clicking a chart sends you to the Report body. 
+    </p>
+
+    <div class="clearfix"></div>
+
+    <h3>Node Editor</h3>
+
+    <figure class="col-xs-8 col-md-5 pull-left">
+      <figcaption>Change Parent</figcaption>
+      <img src="/images/projects/change-parent.gif" class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+
+    <figure class="col-xs-5 col-md-3 pull-left">
+      <figcaption>Add Child Node</figcaption>
+      <video src="/images/projects/add-child.mp4" autoplay loop class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+
+    <figure class="col-xs-5 col-md-3 pull-left">
+      <figcaption>Add Parent Node</figcaption>
+      <video src="/images/projects/add-above.mp4" autoplay loop class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+
+    <figure class="col-xs-8 col-md-5 pull-left">
+      <figcaption>Merge Nodes</figcaption>
+      <video src="/images/projects/merge.mp4" autoplay loop class="img-thumbnail" />
+    </figure>
+    <div class="clearfix"></div>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+<div class="row project-row dark">
+
+  <div class="col-sm-8">
+    <h1>Chalkle<br />
+      <sub></sub>
+    </h1>
+  </div>
+
+
+  <div class="col-md-4">
+    <img src="/images/projects/chalkle.jpg" />
+  </div>
+</div>
+
+
+<div class="row project-row">
+
+  <div class="col-md-4">
+    <img src="/images/projects/ipad.jpg" />
+  </div>
+
+  <div class="col-sm-8">
+    <h1>Orange Umbrella iOS application<br />
+      <sub></sub>
+    </h1>
+  </div>
+
+</div>

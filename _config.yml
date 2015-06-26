@@ -1,0 +1,13 @@
+# Site settings
+title: Design is more than Pixels
+email: matthew.kerr@me.com
+description: > # things
+  Designing for startups big and small there are things
+  that work, and things that fail spectacularly. These are their stories. 
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://morethanpixels.net" # the base hostname & protocol for your site
+twitter_username: matthewkerr
+github_username:  kerrmatthew
+
+# Build settings
+markdown: kramdown
